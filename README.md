@@ -21,7 +21,8 @@ const otherThing = `This template string has "things" to say, don't you think?`;
 
 /*
   Stuff 'here' and "here" don't work man
- */```
+ */
+```
  Simple search & replace
 ```js
 // Don"t read these comments
@@ -34,7 +35,8 @@ const otherThing = `This template string has "things" to say, don"t you think?`;
 
 /*
   Stuff "here" and "here" don"t work man
- */```
+ */
+```
  Q2Q
 ```js
 // Don't read these comments
@@ -47,7 +49,8 @@ const otherThing = `This template string has "things" to say, don't you think?`;
 
 /*
   Stuff 'here' and "here" don't work man
- */```
+ */
+```
 
 ## Known issues
  * Assumes your code has no syntax errors
