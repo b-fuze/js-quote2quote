@@ -1,7 +1,7 @@
 # js-quote2quote
 Converts all Javascript string literals (excluding template strings) to either single quote or double quote strings
 
-It isn't a mere search & replace, it's basically a dead simple parser that finds all string literals (except for template strings, see known issues below) and sets them to either single or double quotes
+It isn't a mere search & replace, it's basically a dead simple parser that finds all string literals while ignoring comments (except for template strings, see known issues below) and sets them to either single or double quotes
 
 ## Usage
 ```bash
