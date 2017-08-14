@@ -98,10 +98,14 @@ function switchStringLiterals(rawSource, rawPreference) {
       }
     } else if (inString) {
       if (char === "\\") {
-        if (source[i + 1] === other) {
-          newSource += char;
+        let next = source[i + 1];
+        
+        if (next === other) {
+          newSource += other;
+        } else if (next === prefer) {
+          newSource += "\\" + prefer;
         } else {
-          newSource += "\\" + char;
+          newSource += "\\" + next;
         }
         
         // Skip escape char
