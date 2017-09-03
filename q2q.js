@@ -20,7 +20,7 @@ function switchStringLiterals(rawSource, rawPreference) {
 
   for (let i=0; i<comments.length; i++) {
     const comment = comments[i];
-    
+
     (commentCharMap[comment[0]] || (commentCharMap[comment[0]] = [])).push(comment);
   }
 
@@ -38,7 +38,7 @@ function switchStringLiterals(rawSource, rawPreference) {
   mainLoop:
   for (let i=0; i<source.length; i++) {
     const char = source[i];
-    
+
     if (inComment) {
       if (char === commentClose[0]) {
         // Check if it's the end of the comment
@@ -46,31 +46,31 @@ function switchStringLiterals(rawSource, rawPreference) {
           // It's the end of the comment
           newSource += commentClose;
           inComment  = false;
-          
+
           i += commentClose.length - 1;
           continue;
         }
       }
-      
+
       // Just add comment's contents
       newSource += char;
     } else if (inTemplate) {
       if (char === "\\" && source[i + 1] === "`") {
         // Escaped tilde, skip it
         newSource += "\\`";
-        
+
         i++;
       } else {
         if (char === "`") {
           inTemplate = false;
         }
-        
+
         newSource += char;
       }
     } else if (inString) {
       if (char === "\\") {
         let next = source[i + 1];
-        
+
         if (next === other) {
           newSource += other;
         } else if (next === prefer) {
@@ -78,7 +78,7 @@ function switchStringLiterals(rawSource, rawPreference) {
         } else {
           newSource += "\\" + next;
         }
-        
+
         // Skip escape char
         i++;
       } else {
@@ -97,41 +97,41 @@ function switchStringLiterals(rawSource, rawPreference) {
     } else {
       // Check if the start of a comment
       let mapComments;
-      
+
       if (mapComments = commentCharMap[char]) {
         commentLoop:
         for (let j=0; j<mapComments.length; j++) {
           const commentStart = mapComments[j];
-          
+
           if (source.substr(i, commentStart.length) === commentStart) {
             inComment    = true;
             commentType  = commentStart;
             commentClose = commentEndings[commentStart];
-            
+
             // Add comment to newSource
             newSource += commentStart;
-            
+
             i += commentStart.length - 1;
-            
+
             // Go to next iteration
             continue mainLoop;
           }
         }
       }
-      
+
       switch (char) {
         case '"':
         case "'":
           stringType  = char;
           stringType2 = opposite(char);
-          
+
           // Will this string's quotes be switched?
           if (stringType === prefer) {
             stringSwitch = false;
           } else {
             stringSwitch = true;
           }
-          
+
           newSource += prefer;
           inString   = true;
           break;
