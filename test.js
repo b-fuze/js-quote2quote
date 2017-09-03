@@ -20,3 +20,50 @@ test('replace all double quotes to single quotes', () => {
   const output = `'sample' \`source\` 'string' 'yep' 'sure'`;
   expect(switchStringLiterals(input, `'`)).toBe(output);
 });
+
+test('avoid replacing quotes inside // comments', () => {
+  const input  = `// this is a comment with 'single' and "double" quotes`;
+  const output = `// this is a comment with 'single' and "double" quotes`;
+  expect(switchStringLiterals(input, `'`)).toBe(output);
+  expect(switchStringLiterals(input, `"`)).toBe(output);
+});
+
+test('avoid replacing quotes inside /* */ comments', () => {
+  const input  = `/* this is a comment with 'single' and "double" quotes */`;
+  const output = `/* this is a comment with 'single' and "double" quotes */`;
+  expect(switchStringLiterals(input, `'`)).toBe(output);
+  expect(switchStringLiterals(input, `"`)).toBe(output);
+});
+
+test('avoid replacing quotes inside multiline /* */ comments', () => {
+  const input  = `/* this is a multiline
+                   * comment with 'single'
+                   * and "double" quotes
+                   */`;
+  const output = `/* this is a multiline
+                   * comment with 'single'
+                   * and "double" quotes
+                   */`;
+  expect(switchStringLiterals(input, `'`)).toBe(output);
+  expect(switchStringLiterals(input, `"`)).toBe(output);
+});
+
+test('avoid replacing quotes inside <!-- --> comments', () => {
+  const input  = `<!-- this is a comment with 'single' and "double" quotes -->`;
+  const output = `<!-- this is a comment with 'single' and "double" quotes -->`;
+  expect(switchStringLiterals(input, `'`)).toBe(output);
+  expect(switchStringLiterals(input, `"`)).toBe(output);
+});
+
+test('avoid replacing quotes inside multiline <!-- --> comments', () => {
+  const input  = `<!-- this is a multiline
+                       comment with 'single'
+                       and "double" quotes
+                   -->`;
+  const output = `<!-- this is a multiline
+                       comment with 'single'
+                       and "double" quotes
+                   -->`;
+  expect(switchStringLiterals(input, `'`)).toBe(output);
+  expect(switchStringLiterals(input, `"`)).toBe(output);
+});
