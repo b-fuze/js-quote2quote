@@ -67,3 +67,17 @@ test('avoid replacing quotes inside multiline <!-- --> comments', () => {
   expect(switchStringLiterals(input, `'`)).toBe(output);
   expect(switchStringLiterals(input, `"`)).toBe(output);
 });
+
+// not entirely sure of the escape going on here, could prob be easier with an input/ouput file
+test('replaces quotes inside string literals', () => {
+  const input  = '`Hey, ${ user["name"] }!`';
+  const output = "`Hey, ${ user['name'] }!`";
+  expect(switchStringLiterals(input, `'`)).toBe(output);
+});
+
+// not entirely sure of the escape going on here, could prob be easier with an input/ouput file
+test('replaces quotes inside string literals', () => {
+  const input  = "`Hey, ${ user['name'] }!`";
+  const output = '`Hey, ${ user["name"] }!`';
+  expect(switchStringLiterals(input, `'`)).toBe(output);
+});
