@@ -2,7 +2,7 @@
   "name": "js-quote2quote",
   "version": "1.0.0",
   "description": "Converts all Javascript string literals (excluding template strings) to either single quote or double quote strings",
-  "main": "q2q.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
