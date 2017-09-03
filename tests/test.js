@@ -1,5 +1,5 @@
-const switchStringLiterals = require('./q2q.js').switchStringLiterals;
-const opposite = require('./q2q.js').opposite;
+const switchStringLiterals = require('../q2q.js').switchStringLiterals;
+const opposite = require('../q2q.js').opposite;
 
 test('swap single quote for double quote', () => {
   expect(opposite(`'`)).toBe(`"`);
@@ -25,8 +25,8 @@ test('replace all double quotes to single quotes', () => {
 // should prob be rewritten
 test('complete in/out from the example', () => {
   const fs = require('fs');
-  const input  = fs.readFileSync('./test-in.js', {encoding: "utf8"});
-  const output = fs.readFileSync('./test-out.js', {encoding: "utf8"});
+  const input  = fs.readFileSync('./tests/test-in.js', {encoding: "utf8"});
+  const output = fs.readFileSync('./tests/test-out.js', {encoding: "utf8"});
   expect(switchStringLiterals(input, `"`)).toBe(output);
 });
 
