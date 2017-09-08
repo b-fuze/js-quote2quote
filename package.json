@@ -1,0 +1,22 @@
+{
+  "name": "js-quote2quote",
+  "version": "1.0.0",
+  "description": "Converts all Javascript string literals (excluding template strings) to either single quote or double quote strings",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b-fuze/js-quote2quote.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/b-fuze/js-quote2quote/issues"
+  },
+  "homepage": "https://github.com/b-fuze/js-quote2quote#readme",
+  "devDependencies": {
+    "jest": "^20.0.4"
+  }
+}
